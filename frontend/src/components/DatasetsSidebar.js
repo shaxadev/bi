@@ -23,6 +23,7 @@ import {
 } from '@mui/icons-material';
 
 const SIDEBAR_WIDTH_PX = 280;
+const HEADER_HEIGHT_PX = 112;
 
 const DatasetsSidebar = ({ open, onClose, datasets, selectedDataset, onDatasetSelect, alwaysVisible = false }) => {
   const [expandedDatasets, setExpandedDatasets] = useState(new Set());
@@ -89,18 +90,18 @@ const DatasetsSidebar = ({ open, onClose, datasets, selectedDataset, onDatasetSe
         '& .MuiDrawer-paper': {
           width: SIDEBAR_WIDTH_PX,
           boxSizing: 'border-box',
-          borderLeft: '1px solid #e0e0e0',
+          borderLeft: '1px solid #1e1e1e',
           position: 'fixed',
-          top: '64px', // below AppBar
-          height: 'calc(100vh - 64px)',
-          backgroundColor: '#fafafa'
+          top: `${HEADER_HEIGHT_PX}px`,
+          height: `calc(100vh - ${HEADER_HEIGHT_PX}px)`,
+          backgroundColor: '#f7f7f7'
         }
       }}
     >
       {/* Header */}
       <Box sx={{ 
         p: 2, 
-        backgroundColor: '#1976d2', 
+        backgroundColor: '#2b2b2b',
         color: 'white',
         display: 'flex',
         alignItems: 'center',
