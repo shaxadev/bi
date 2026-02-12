@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Button, Typography, Grid, Card, CardContent, IconButton, Tooltip } from '@mui/material';
-import { Analytics as AnalyticsIcon, Settings as SettingsIcon } from '@mui/icons-material';
+import { Analytics as AnalyticsIcon, Settings as SettingsIcon, CloudUpload as UploadIcon } from '@mui/icons-material';
 
 // Import components
 import HeaderComponent from '../components/HeaderComponent';
@@ -575,7 +575,7 @@ function Dashboard() {
   };
 
   return (
-    <Box sx={{ backgroundColor: '#f5f5f5', minHeight: '100vh' }}>
+    <Box sx={{ backgroundColor: '#e9ecef', minHeight: '100vh' }}>
       {/* Header */}
       <HeaderComponent 
         onUploadClick={handleUploadClick} 
@@ -588,56 +588,89 @@ function Dashboard() {
       <MiniSidebar />
 
       {/* Main Content */}
-      <Box p={4} sx={{ pl: '80px', pt: '80px' }}>
-        {/* Current Dataset Info */}
-        {selected && (
-          <Card sx={{ mb: 3, p: 2, backgroundColor: '#e3f2fd' }}>
-            <Typography variant="h6" gutterBottom>
-              Hozirgi Dataset: {selected.name}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {selected.rows.length} qator, {selected.columns.length} ustun
-            </Typography>
-          </Card>
-        )}
-
-        {/* Visualizations */}
-        {visualizations.length > 0 ? (
-          <Grid container spacing={3}>
-            {visualizations.map((visualization) => (
-              <Grid item xs={12} md={6} lg={4} key={visualization.id}>
-                <Card sx={{ height: '100%', position: 'relative' }}>
-                  <CardContent sx={{ p: 2 }}>
-                    {renderVisualization(visualization)}
-                  </CardContent>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        ) : (
-          <Box sx={{ 
-            textAlign: 'center', 
-            py: 8, 
-            backgroundColor: '#fff', 
+      <Box p={3} sx={{ pl: '88px', pt: '132px' }}>
+        {/* Report Workspace Header */}
+        <Card
+          sx={{
+            mb: 3,
+            p: 2,
+            backgroundColor: '#fff',
             borderRadius: 2,
-            border: '2px dashed #e0e0e0'
-          }}>
-            <Typography variant="h6" color="text.secondary" gutterBottom>
-              Hali hech qanday visualization qo'shilmagan
-            </Typography>
-            <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
-              Header da "Visualizations" tugmasini bosing va yangi visualization qo'shing
-            </Typography>
-            <Button
-              variant="contained"
-              startIcon={<AnalyticsIcon />}
-              onClick={handleVisualizationsToggle}
-              sx={{ backgroundColor: '#9c27b0' }}
-            >
-              Visualization qo'shish
-            </Button>
+            border: '1px solid #d6d6d6',
+            boxShadow: '0 2px 10px rgba(0,0,0,0.06)'
+          }}
+        >
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, alignItems: 'center', justifyContent: 'space-between' }}>
+            <Box>
+              <Typography variant="subtitle2" color="text.secondary">
+                Report Canvas
+              </Typography>
+              <Typography variant="h6" sx={{ fontWeight: 700 }}>
+                {selected ? selected.name : 'Sample Report'}
+              </Typography>
+              {selected && (
+                <Typography variant="body2" color="text.secondary">
+                  {selected.rows.length} rows • {selected.columns.length} columns
+                </Typography>
+              )}
+            </Box>
+            <Box sx={{ display: 'flex', gap: 1 }}>
+              <Button variant="outlined" onClick={handleUploadClick} startIcon={<UploadIcon />}>
+                Get Data
+              </Button>
+              <Button variant="contained" onClick={handleVisualizationsToggle} startIcon={<AnalyticsIcon />} sx={{ backgroundColor: '#f2c811', color: '#1f1f1f' }}>
+                Add Visual
+              </Button>
+            </Box>
           </Box>
-        )}
+        </Card>
+
+        {/* Report Canvas */}
+        <Box
+          sx={{
+            backgroundColor: '#fff',
+            borderRadius: 2,
+            border: '1px solid #d6d6d6',
+            minHeight: '65vh',
+            p: 3
+          }}
+        >
+          {visualizations.length > 0 ? (
+            <Grid container spacing={3}>
+              {visualizations.map((visualization) => (
+                <Grid item xs={12} md={6} lg={4} key={visualization.id}>
+                  <Card sx={{ height: '100%', position: 'relative', border: '1px solid #ededed' }}>
+                    <CardContent sx={{ p: 2 }}>
+                      {renderVisualization(visualization)}
+                    </CardContent>
+                  </Card>
+                </Grid>
+              ))}
+            </Grid>
+          ) : (
+            <Box sx={{ textAlign: 'center', py: 10 }}>
+              <Typography variant="h6" color="text.secondary" gutterBottom>
+                Start building your report
+              </Typography>
+              <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
+                Add fields, drop visuals on the canvas, and configure interactions just like Power BI Desktop.
+              </Typography>
+              <Button
+                variant="contained"
+                startIcon={<AnalyticsIcon />}
+                onClick={handleVisualizationsToggle}
+                sx={{ backgroundColor: '#f2c811', color: '#1f1f1f' }}
+              >
+                Add a visualization
+              </Button>
+            </Box>
+          )}
+        </Box>
+
+        <Box sx={{ display: 'flex', gap: 1, mt: 2 }}>
+          <Button variant="outlined" size="small">Page 1</Button>
+          <Button variant="text" size="small" sx={{ color: 'text.secondary' }}>+</Button>
+        </Box>
       </Box>
 
       {/* Sidebar */}

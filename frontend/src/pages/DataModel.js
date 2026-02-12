@@ -980,7 +980,7 @@ const DataModel = () => {
   };
 
   return (
-    <Box sx={{ backgroundColor: '#f5f5f5', minHeight: '100vh' }}>
+    <Box sx={{ backgroundColor: '#e9ecef', minHeight: '100vh' }}>
       {/* Header */}
       <HeaderComponent 
         onUploadClick={() => navigate('/')} 
@@ -997,9 +997,9 @@ const DataModel = () => {
         display: 'flex', 
         flexDirection: 'column', 
         gap: 3, 
-        pl: '80px', 
-        pr: '300px', 
-        pt: '80px'
+        pl: '88px',
+        pr: '300px',
+        pt: '132px'
       }}>
         {/* Relationships */}
         {renderRelationshipsSection()}

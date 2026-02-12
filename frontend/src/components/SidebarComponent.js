@@ -52,7 +52,9 @@ const SidebarComponent = ({
         sx: {
           width: 380,
           backgroundColor: '#f8f9fa',
-          borderLeft: '1px solid #e0e0e0'
+          borderLeft: '1px solid #1e1e1e',
+          top: '112px',
+          height: 'calc(100vh - 112px)'
         }
       }}
     >
@@ -62,7 +64,7 @@ const SidebarComponent = ({
         display: 'flex', 
         alignItems: 'center', 
         justifyContent: 'space-between',
-        backgroundColor: '#1976d2',
+        backgroundColor: '#2b2b2b',
         color: 'white'
       }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>

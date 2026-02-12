@@ -4,15 +4,16 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Home as HomeIcon, DataObject as DataObjectIcon, TableChart as TableChartIcon } from '@mui/icons-material';
 
 const SIDEBAR_WIDTH_PX = 64;
+const HEADER_HEIGHT_PX = 112;
 
 const MiniSidebar = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
 
 	const items = [
-		{ key: 'dashboard', icon: <HomeIcon />, path: '/', label: 'Dashboard' },
-		{ key: 'data-model', icon: <DataObjectIcon />, path: '/data-model', label: 'Data Model' },
-		{ key: 'data-view', icon: <TableChartIcon />, path: '/data-view', label: 'Data View' }
+		{ key: 'report', icon: <HomeIcon />, path: '/', label: 'Report' },
+		{ key: 'data', icon: <TableChartIcon />, path: '/data-view', label: 'Data' },
+		{ key: 'model', icon: <DataObjectIcon />, path: '/data-model', label: 'Model' }
 	];
 
 	const isActive = (path) => {
@@ -30,11 +31,11 @@ const MiniSidebar = () => {
 				'& .MuiDrawer-paper': {
 					width: SIDEBAR_WIDTH_PX,
 					boxSizing: 'border-box',
-					borderRight: '1px solid #e0e0e0',
+					borderRight: '1px solid #1e1e1e',
 					position: 'fixed',
-					top: '64px', // below AppBar
-					height: 'calc(100vh - 64px)',
-					backgroundColor: '#fafafa'
+					top: `${HEADER_HEIGHT_PX}px`,
+					height: `calc(100vh - ${HEADER_HEIGHT_PX}px)`,
+					backgroundColor: '#1f1f1f'
 				}
 			}}
 		>
@@ -45,9 +46,10 @@ const MiniSidebar = () => {
 							size="large"
 							onClick={() => navigate(item.path)}
 							sx={{
-								color: isActive(item.path) ? '#1976d2' : '#666',
-								backgroundColor: isActive(item.path) ? 'rgba(25,118,210,0.1)' : 'transparent',
-								'&:hover': { backgroundColor: 'rgba(25,118,210,0.15)' },
+								color: isActive(item.path) ? '#f2c811' : '#c9c9c9',
+								backgroundColor: isActive(item.path) ? 'rgba(242,200,17,0.15)' : 'transparent',
+								borderRadius: 1.5,
+								'&:hover': { backgroundColor: 'rgba(242,200,17,0.2)' },
 								mt: 0.5
 							}}
 						>

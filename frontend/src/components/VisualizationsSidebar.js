@@ -75,7 +75,9 @@ const VisualizationsSidebar = ({
         sx: {
           width: 350,
           backgroundColor: '#f8f9fa',
-          borderRight: '1px solid #e0e0e0'
+          borderRight: '1px solid #1e1e1e',
+          top: '112px',
+          height: 'calc(100vh - 112px)'
         }
       }}
     >
